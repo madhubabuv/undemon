@@ -1,6 +1,7 @@
 # UnDEMoN
-UnDEMoN: Unsupervised Depth and EgoMotion Network (IROS 2018 Oral)
+UnDEMoN: Unsupervised Depth and EgoMotion Network
 Madhu Babu V, Kaushik Das, Anima Majumder and  Swagat Kumar
+in IROS 2018 (oral)
 
 
 ## Prerequisites
@@ -29,6 +30,6 @@ Once the training is over, use the `test_depth.py` and `test_pose.py` in `depth_
 
 ## Evaluation
 
-We have used the depth evaluation scripts from mondepth [here](https://github.com/mrharicot/monodepth) and the pose evalution scripts from the SfM Learner[here](https://github.com/tinghuiz/SfMLearner/). 
+We have used the depth evaluation scripts from [monodepth](https://github.com/mrharicot/monodepth) and the pose evalution scripts from the [SfMLearner](https://github.com/tinghuiz/SfMLearner/). 
 We am very thankful the Monodepth and SfMLearner authors for their code bases.
 
