@@ -33,3 +33,17 @@ Once the training is over, use the `test_depth.py` and `test_pose.py` in `depth_
 We have used the depth evaluation scripts from [monodepth](https://github.com/mrharicot/monodepth) and the pose evalution scripts from the [SfMLearner](https://github.com/tinghuiz/SfMLearner/). 
 We am very thankful the Monodepth and SfMLearner authors for their code bases.
 
+## Reference
+If you find our work useful in your research please consider citing our paper:
+```
+@inproceedings{babu2018undemon,
+  title={UnDEMoN: Unsupervised Deep Network for Depth and Ego-Motion Estimation},
+  author={Babu, V Madhu and Das, Kaushik and Majumdar, Anima and Kumar, Swagat},
+  booktitle={2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={1082--1088},
+  year={2018},
+  organization={IEEE}
+}
+```
+## 👩‍⚖️ License
+
