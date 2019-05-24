@@ -15,7 +15,7 @@ For [KITTI](http://www.cvlibs.net/datasets/kitti/raw_data.php), first download t
 
 
 ## Training
-Once the data are formatted following the above instructions, you should be able to train the model by running the `main.py`.
+Once the data are formatted following the above instructions, you should be able to train the model by running the `train.py`.
 
 You can then start a `tensorboard` session by
 
@@ -26,7 +26,7 @@ and visualize the training progress by opening [https://localhost:8888](https://
 
 ## Testing
 
-Once the training is over, use the `test_depth.py` and `test_pose.py` in `depth_pose/test` folder
+Once the training is over, use the `test_depth.py` and `test_pose.py` 
 
 ## Evaluation
 
