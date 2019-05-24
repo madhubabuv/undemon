@@ -21,8 +21,8 @@ def compute_ate(gtruth_file, pred_file):
     pred_xyz += offset[None,:]
 
     # Optimize the scaling factor
-    scale = np.sum(gtruth_xyz * pred_xyz)/np.sum(pred_xyz ** 2)
-    alignment_error = pred_xyz * scale - gtruth_xyz
+    #scale = np.sum(gtruth_xyz * pred_xyz)/np.sum(pred_xyz ** 2)
+    alignment_error = pred_xyz  - gtruth_xyz
     rmse = np.sqrt(np.sum(alignment_error ** 2))/len(matches)
     return rmse
 
@@ -368,11 +368,11 @@ def pose_vec_to_mat(vec):
     Tmat = np.concatenate((Tmat, hfiller), axis=0)
     return Tmat
 
-def dump_pose_seq_TUM(out_file, poses):
+def dump_pose_seq_TUM(out_file, poses, times):
     # First frame as the origin
     first_pose = pose_vec_to_mat(poses[0])
     with open(out_file, 'w') as f:
-        for p in range(3):
+        for p in range(len(times)):
             this_pose = pose_vec_to_mat(poses[p])
             this_pose = np.dot(first_pose, np.linalg.inv(this_pose))
             tx = this_pose[0, 3]
@@ -380,4 +380,4 @@ def dump_pose_seq_TUM(out_file, poses):
             tz = this_pose[2, 3]
             rot = this_pose[:3, :3]
             qw, qx, qy, qz = rot2quat(rot)
-            f.write('%f %f %f %f %f %f %f\n' % (tx, ty, tz, qx, qy, qz, qw))
+            f.write('%f %f %f %f %f %f %f %f\n' % (float(times[p]), tx, ty, tz, qx, qy, qz, qw))

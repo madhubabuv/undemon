@@ -187,21 +187,7 @@ def meshgrid(batch, height, width, is_homogeneous=True):
   coords = tf.tile(tf.expand_dims(coords, 0), [batch, 1, 1, 1])
   return coords
 
-def calc_depth( disp, cam_mat):
-
-    batch, height, width, _ = disp.get_shape().as_list()
-
-    base_length = 0.537
-
-    f = cam_mat[:, 0, 0]
-
-    pred_depth = tf.stack([(base_length * f[i]) / (width * disp[i])
-                           for i in range(batch)])
-
-    return tf.squeeze(pred_depth,axis=3)
-
-
-def projective_inverse_warp(img, disp, pose, intrinsics):
+def projective_inverse_warp(img, depth, pose, intrinsics):
   """Inverse warp a source image to the target image plane based on projection.
 
   Args:
@@ -215,9 +201,6 @@ def projective_inverse_warp(img, disp, pose, intrinsics):
     width_t, 3]
   """
   batch, height, width, _ = img.get_shape().as_list()
-
-  depth=calc_depth(disp,intrinsics)
-
   # Convert pose vector to matrix
   pose = pose_vec2mat(pose)
   # Construct pixel grid coordinates

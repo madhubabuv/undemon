@@ -14,10 +14,8 @@ parser.add_argument("--dump_root", type=str, required=True, help="Where to dump 
 parser.add_argument("--seq_length", type=int, required=True, help="Length of each training sequence")
 parser.add_argument("--img_height", type=int, default=256, help="image height")
 parser.add_argument("--img_width", type=int, default=512, help="image width")
-parser.add_argument("--num_threads", type=int, default=7, help="number of threads to use")
+parser.add_argument("--num_threads", type=int, default=1, help="number of threads to use")
 args = parser.parse_args()
-
-print args.dump_root
 
 def concat_image_seq(seq):
     for i, im in enumerate(seq):
@@ -27,7 +25,7 @@ def concat_image_seq(seq):
             res = np.hstack((res, im))
     return res
 
-def dump_example(n,args):
+def dump_example(n):
     print("frame_id%d"%n)
     if n % 200 == 0:
         print('Progress %d/%d....' % (n, data_loader.num_train))
@@ -42,16 +40,14 @@ def dump_example(n,args):
         fy = intrinsics[1, 1]
         cx = intrinsics[0, 2]
         cy = intrinsics[1, 2]
-
         dump_dir = os.path.join(args.dump_root, example['folder_name'],example['camera_id'])
-
-        if not os.path.isdir(dump_dir):
+        # if not os.path.isdir(dump_dir):
+        #     os.makedirs(dump_dir, exist_ok=True)
+        try:
             os.makedirs(dump_dir)
-        #try:
-        #    os.makedirs(args.dump_root)
-        #except OSError:
-        #    if not os.path.isdir(args.dump_root):
-        #        raise
+        except OSError:
+            if not os.path.isdir(dump_dir):
+                raise
         dump_img_file = dump_dir + '/%s.jpg' % example['file_name']
         scipy.misc.imsave(dump_img_file, image_seq.astype(np.uint8))
         dump_cam_file = dump_dir + '/%s_cam.txt' % example['file_name']
@@ -95,7 +91,7 @@ def main():
 
     print(data_loader.num_train)
 
-    Parallel(n_jobs=args.num_threads)(delayed(dump_example)(n,args) for n in range(data_loader.num_train-1))
+    Parallel(n_jobs=args.num_threads)(delayed(dump_example)(n) for n in range(data_loader.num_train-1))
 
     # Split into train/val
     np.random.seed(8964)

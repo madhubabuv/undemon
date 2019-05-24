@@ -9,8 +9,9 @@ class DataLoader(object):
                  batch_size=None,
                  mode=None, 
                  img_height=None, 
-                 img_width=None,
-                 num_scales=None,num_source=None,):
+                 img_width=None, 
+                 num_source=None, 
+                 num_scales=None):
         self.mode=mode
         self.dataset_dir = dataset_dir
         self.batch_size = batch_size
@@ -117,16 +118,7 @@ class DataLoader(object):
                                               lambda: self.augment_image_pair(left_image, right_image),
                                               lambda: (left_image, right_image))
 
-            #src_1_augment = tf.random_uniform([], 0, 1)
-
-
-            #src_2_augment = tf.random_uniform([], 0, 1)
-
-
-            #left_target_files,left_src_files=tf.cond(src_1_augment>0.5,lambda: (left_image[:,:,3:6],tf.concat((left_image[:,:,:3],left_image[:,:,6:]),2)),lambda:(left_image[:,:,:3], left_image[:,:,3:]))
-
-            #right_target_files,right_src_files=tf.cond(src_1_augment>0.5,lambda:(right_image[:,:,3:6],tf.concat((right_image[:,:,:3],right_image[:,:,6:]),2)),lambda:(right_image[:,:,:3], right_image[:,:,3:]))
-
+             
 
             left_target_files,left_src_files=left_image[:,:,:3], left_image[:,:,3:]
 
