@@ -1,7 +1,5 @@
-# Mostly based on the code written by Clement Godard: 
-# https://github.com/mrharicot/monodepth/blob/master/utils/evaluation_utils.py
 import numpy as np
-# import pandas as pd
+import pandas as pd
 import os
 import cv2
 from collections import Counter
@@ -86,7 +84,7 @@ def read_file_data(files, data_root):
     for filename in files:
         filename = filename.split()[0]
         splits = filename.split('/')
-#         camera_id = filename[-1]   # 2 is left, 3 is right
+        camera_id = np.int32(splits[2][-1:])   # 2 is left, 3 is right
         date = splits[0]
         im_id = splits[4][:10]
         file_root = '{}/{}'
@@ -103,7 +101,7 @@ def read_file_data(files, data_root):
         else:
             num_probs += 1
             print('{} missing'.format(data_root + im))
-    # print(num_probs, 'files missing')
+    print num_probs, 'files missing'
 
     return gt_files, gt_calib, im_sizes, im_files, cams
 
@@ -145,7 +143,7 @@ def read_calib_file(path):
     return data
 
 
-def get_focal_length_baseline(calib_dir, cam=2):
+def get_focal_length_baseline(calib_dir, cam):
     cam2cam = read_calib_file(calib_dir + 'calib_cam_to_cam.txt')
     P2_rect = cam2cam['P_rect_02'].reshape(3,4)
     P3_rect = cam2cam['P_rect_03'].reshape(3,4)

@@ -8,16 +8,16 @@ from UnDEMoN import UnDEMoN
 
 flags = tf.app.flags
 flags.DEFINE_integer("batch_size", 4, "The size of of a sample batch")
-flags.DEFINE_integer("img_height", 128, "Image height")
-flags.DEFINE_integer("img_width", 416, "Image width")
+flags.DEFINE_integer("img_height", 256, "Image height")
+flags.DEFINE_integer("img_width", 512, "Image width")
 flags.DEFINE_string("dataset_dir", None, "Dataset directory")
 flags.DEFINE_string("output_dir", None, "Output directory")
 flags.DEFINE_string("ckpt_file", None, "checkpoint file")
 FLAGS = flags.FLAGS
 
 def main(_):
-    with open('data/kitti/test_files_eigen.txt','r') as f:
-    #with open('data/kitti/test_files_stereo.txt','r') as f:
+    #with open('data/kitti/test_files_eigen.txt','r') as f:
+    with open('data/kitti/test_files_stereo.txt','r') as f:
         test_files = f.readlines()
         test_files = [FLAGS.dataset_dir + t.split(' ')[0][:-1] for t in test_files]
     if not os.path.exists(FLAGS.output_dir):
