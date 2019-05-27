@@ -26,7 +26,7 @@ and visualize the training progress by opening [https://localhost:8888](https://
 
 ## Testing
 
-Download the checkpoints from [here](https://drive.google.com/drive/folders/1bg55pMxO7fgLoyB-yb6pjtUNc6zD4pqT?usp=sharing) and use the `test_depth.py` and `test_pose.py` with necessary arguments. 
+Download the checkpoints from [here](https://drive.google.com/drive/folders/1bg55pMxO7fgLoyB-yb6pjtUNc6zD4pqT?usp=sharing) and use the `test_kitti_depth.py` and `test_kitt_pose.py` with necessary arguments. 
 
 ## Evaluation
 
