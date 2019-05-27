@@ -31,7 +31,7 @@ Download the checkpoints from [here](https://drive.google.com/drive/folders/1bg5
 ## Evaluation
 
 We have used the depth evaluation scripts from [monodepth](https://github.com/mrharicot/monodepth) and the pose evalution scripts from the [SfMLearner](https://github.com/tinghuiz/SfMLearner/). 
-We am very thankful the Monodepth and SfMLearner authors for their code bases.
+We are very thankful the Monodepth and SfMLearner authors for their code bases.
 
 ## Reference
 If you find our work useful in your research please consider citing our paper:
