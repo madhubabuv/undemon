@@ -46,5 +46,4 @@ If you find our work useful in your research please consider citing our paper:
 }
 ```
 ## 👩‍⚖️ License
-
-All rights are reserved and it is for non-commercial use only.
+Non-Commercial use only. 
