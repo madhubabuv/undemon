@@ -50,12 +50,6 @@ class UnDEMoN(object):
                                           opt.img_width / (2 ** i)
                                           ) for i in range(4)]
 
-            right_depth=[self.calc_depth(disp_right_est[i],
-                                          intrinsics[:, i, :, :],
-                                          opt.img_width / (2 ** i)
-                                          ) for i in range(4)]
-
-
         with tf.name_scope("pose_net"):
             pred_poses,pose_net_endpoints = \
                 pose_net(tgt_image,
