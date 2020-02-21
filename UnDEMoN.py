@@ -381,7 +381,7 @@ class UnDEMoN(object):
         tgt_image, src_image_stack = loader.batch_unpack_image_sequence(input_mc, self.img_height, self.img_width, self.num_source)
 
         with tf.name_scope("pose_prediction"):
-            pred_poses,_ = pose_exp_net(tgt_image, src_image_stack,is_training=False)
+            pred_poses,_ = pose_net(tgt_image, src_image_stack,is_training=False)
 
             self.inputs = input_uint8
             self.pred_poses = pred_poses
